@@ -9,3 +9,5 @@ router.get("/users", (req, res) => getUserController.handle(req, res));
 
 // Get user by id;
 router.get("/users/:id", (req, res) => getUserController.handleOne(req, res));
+
+export { router };
