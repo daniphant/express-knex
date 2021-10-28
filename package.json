@@ -4,7 +4,7 @@
   "author": "daniphant <daniphant@protonmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --respawn --transpile-only --ignore-watch node_modules --no-notify src/index.ts"
+    "dev": "tsnd --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts"
   },
   "dependencies": {
     "express": "^4.17.1",
