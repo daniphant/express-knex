@@ -11,3 +11,5 @@ export class User {
     Object.assign(this, user);
   }
 }
+
+export const selectable = ["id", "name", "email", "created_at", "updated_at"];

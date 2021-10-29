@@ -1,7 +1,7 @@
 import { IUsersRepository } from "../IUsersRepository";
 
 import knex from "../../database/";
-import { User } from "../../entities/User";
+import { User, selectable } from "../../entities/User";
 
 export class UsersRepository implements IUsersRepository {
   async findByEmail(email: string): Promise<User | undefined> {
@@ -11,13 +11,13 @@ export class UsersRepository implements IUsersRepository {
   }
 
   async findById(id: string): Promise<User | undefined> {
-    const user = await knex("users").where("id", id).first();
+    const user = await knex("users").select(selectable).where("id", id).first();
 
     return user;
   }
 
   async findAll(): Promise<User[]> {
-    const users = await knex("users").select("*");
+    const users = await knex("users").select(selectable);
 
     return users;
   }
@@ -35,7 +35,7 @@ export class UsersRepository implements IUsersRepository {
     const [updatedUser] = await knex("users")
       .update(fields)
       .where("id", id)
-      .returning("*");
+      .returning(selectable);
 
     return updatedUser;
   }
