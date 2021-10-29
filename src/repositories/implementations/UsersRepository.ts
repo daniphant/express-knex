@@ -30,4 +30,17 @@ export class UsersRepository implements IUsersRepository {
       id: userId[0],
     };
   }
+
+  async update(fields: Partial<User>, id: string): Promise<User> {
+    const [updatedUser] = await knex("users")
+      .update(fields)
+      .where("id", id)
+      .returning("*");
+
+    return updatedUser;
+  }
+
+  async delete(id: string): Promise<void> {
+    await knex("users").where("id", id).del();
+  }
 }
